@@ -4,46 +4,89 @@ html {
     margin: 0px;
     padding: 0px;
     display: block;
+    background: #eee;
 }
 
 #navbar {
     width: 100%;
-    height: 50px;
+    min-width: 230px;
+    height: auto;
+    min-height: 50px;
     display: inline-block;
-    background-color: lightgray;
+    background-color: #333;
     position: absolute;
     top: 0px;
     left: 0px;
-    border-bottom: 1px solid gray;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    border-bottom: 1px solid darkgray;
 }
 
 #logo img {
-    height: 50px;
-    width: auto;
+    height: 40px;
     position: relative;
+    top: 4px;
     margin-left: 20px;
     float: left;
+    background: gray;
+    border-radius: 50%;
 }
 
 #logo p {
     float: left;
     text-decoration: none;
-    color: black;
+    color: white;
     font-family: Arial, sans-serif;
     font-weight: bold;
     font-size: 22px;
     margin: 0px;
-    padding: 0px;
     text-align: center;
     padding: 12px;
+    padding-right: 23px;
+    text-shadow: 1px 1px 1px #aaa;
 }
 
-.ver-line {
+.ver-bar {
     width: 1px;
     height: 50px;
-    border-right: 1px solid gray;
-    display: inline-block;
+    border-left: 1px solid darkgray;
+    display: block;
     float: left;
+}
+
+#navbar ul {
+    list-style: none;
+    float: right;
+    height: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbutton {
+    height: inherit;
+    width: auto;
+    border-left: 1px solid darkgray;
+    display: inline-block;
+    text-align: center;
+    padding: 0px 15px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+.navbutton:hover, .navbutton:focus, .navbutton:active {
+    background-color: #ff8900;
+}
+
+#wrapper {
+    width: 60%;
+    height: auto;
+    position: relative;
+    left: auto;
+    border: 0px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 51px;
+    background: #fff;
 }
