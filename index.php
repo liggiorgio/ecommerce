@@ -8,7 +8,7 @@
     include_once("./public/navbar.php");
 ?>
         <div id="wrapper">
-            <p>Ciaone!</p>
+            <h1>Ciaone!</h1>
         </div>
     </body>
 </html>

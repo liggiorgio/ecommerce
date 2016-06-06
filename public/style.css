@@ -1,5 +1,6 @@
 html {
     width: 100%;
+    min-width: 460px;
     height: auto;
     margin: 0px;
     padding: 0px;
@@ -9,7 +10,7 @@ html {
 
 #navbar {
     width: 100%;
-    min-width: 230px;
+    min-width: 460px;
     height: auto;
     min-height: 50px;
     display: inline-block;
@@ -17,7 +18,9 @@ html {
     position: absolute;
     top: 0px;
     left: 0px;
-    border-bottom: 1px solid darkgray;
+    border-bottom: 1px solid gray;
+    box-shadow: 0px 0px 7px gray;
+    z-index: 2;
 }
 
 #logo img {
@@ -75,12 +78,12 @@ html {
     color: white;
 }
 
-.navbutton:hover, .navbutton:focus, .navbutton:active {
+/*.navbutton:hover, .navbutton:focus, .navbutton:active {
     background-color: #ff8900;
-}
+}*/
 
 #wrapper {
-    width: 60%;
+    width: 62%;
     height: auto;
     position: relative;
     left: auto;

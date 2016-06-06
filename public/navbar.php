@@ -3,11 +3,10 @@
         <img src="./public/logo.png"/>
         <p>eCommerce</p>
     </a>
-    <div class="ver-bar"></div>
     <ul>
         <?php
             if (isset($_SESSION[id])&&($_SESSION['logged']==true)) {
-                echo '<a><li class="navbutton">Profilo</li></a>';
+                echo '<a><li class="navbutton">Profilo</div></li></a>';
                 echo '<a><li class="navbutton">Carrello</li></a>';
             }
             else {
