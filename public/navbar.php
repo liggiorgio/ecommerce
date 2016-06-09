@@ -1,12 +1,12 @@
 <div id="navbar">
     <a id="logo" href="./index.php" title="Home page">
-        <img src="./public/logo.png"/>
+        <img src="./public/res/logo.png"/>
         <p>eCommerce</p>
     </a>
     <ul>
         <?php
-            if (isset($_SESSION[id])&&($_SESSION['logged']==true)) {
-                echo '<a><li class="navbutton">Profilo</div></li></a>';
+            if (isset($_SESSION['username']) && ($_SESSION['logged']==true)) {
+                echo '<a><li class="navbutton">Profilo</li></a>';
                 echo '<a><li class="navbutton">Carrello</li></a>';
             }
             else {
