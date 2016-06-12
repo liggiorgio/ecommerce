@@ -5,9 +5,9 @@
     </a>
     <ul>
         <?php
-            if (isset($_SESSION['username']) && ($_SESSION['logged']==true)) {
-                echo '<a><li class="navbutton">Profilo</li></a>';
-                echo '<a><li class="navbutton">Carrello</li></a>';
+            if (isset($_SESSION['status']) && ($_SESSION['status'] == 1)) {
+                echo '<a href="./check.php" title="Carrello"><li class="navbutton">Carrello</li></a>';
+                echo '<li id="profile-menu" class="navbutton">'.$_SESSION['firstname'].'</li>';
             }
             else {
                 echo '<a href="./login.php" title="Accedi"><li class="navbutton">Accedi</li></a>';

@@ -6,12 +6,13 @@
 
 html {
     width: 100%;
-    min-width: 460px;
+    min-width: 580px;
     height: 100%;
     margin: 0px;
     padding: 0px;
     display: block;
     background: #eee;
+    font-family: "Helvetica", "Arial", sans-serif;
 }
 
 body {
@@ -20,7 +21,7 @@ body {
 
 #navbar {
     width: 100%;
-    min-width: 460px;
+    min-width: 580px;
     height: auto;
     min-height: 50px;
     display: inline-block;
@@ -96,7 +97,7 @@ body {
 }
 
 #wrapper {
-    width: 62%;
+    width: 60%;
     min-height: 100%;
     height: auto !important;
     height: 100%;
@@ -104,14 +105,10 @@ body {
     left: auto;
     margin: 0 auto -30px;
     background: #fff;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
-#space-up {
-    height: 51px;
-}
-
-#space-down {
+#space-up, #space-down {
     height: 50px;
 }
 
@@ -130,6 +127,49 @@ body {
 }
 
 /* Page elements */
-.heading {
+h1, h2, h3 {
     padding: 20px 0;
+    margin: 0 auto;
+}
+
+h4, h5, h6 {
+    padding: 15px 0;
+    margin: 0 auto;
+}
+
+form {
+    margin: 0 auto 12px;
+}
+
+form div {
+    display: table;
+    margin: 0 auto 10px;
+}
+
+form div p {
+    display: table-row;
+}
+
+form div label, form div input {
+    display: table-cell;
+    margin: 5px 20px;
+}
+
+form span {
+    display: table;
+    margin: 0 auto;
+}
+
+#box-error {
+    display: table;
+    margin: 0 auto;
+    border: 1px solid #9a0000;
+    background-color: #ff8787;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 50px;
+}
+
+#box-error span {
+    font-weight: bold;
 }

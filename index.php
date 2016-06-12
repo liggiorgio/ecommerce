@@ -6,8 +6,17 @@
         <div id="wrapper">
             <div id="space-up"></div>
             
-            <!--- Website content --->
-            
+            <!--- Page content --->
+            <h1>Home Page</h1>
+            <?php
+                if (isset($_SESSION['status']) && ($_SESSION['status'] == 1)) {
+                    echo '<p>Benvenuto, '.$_SESSION['fullname'].'!</p>';
+                } else {
+                    echo '<p>Benvenuto, ospite!</p>';
+                }
+            ?>
+            <br>
+            <p><a href="./logout.php">Logout</a></p>
             <div id="space-down"></div>
         </div>
     <?php include_once("./public/footer.php"); ?>
