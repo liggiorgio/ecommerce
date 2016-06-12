@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 html {
     width: 100%;
     min-width: 580px;
@@ -31,7 +35,7 @@ body {
     left: 0px;
     border-bottom: 1px solid gray;
     box-shadow: 0px 0px 7px gray;
-    z-index: 2;
+    z-index: 999;
 }
 
 #logo img {
@@ -72,28 +76,101 @@ body {
     height: inherit;
     margin: 0px;
     padding: 0px;
+    z-index: 999;
 }
 
 .navbutton {
     height: inherit;
     width: auto;
     border-left: 1px solid darkgray;
+    position: relative;
     display: inline-block;
     text-align: center;
-    padding: 0px 15px;
+    padding: 0px 20px;
     font-family: Arial, sans-serif;
     font-size: 18px;
     line-height: 50px;
     text-decoration: none;
     font-weight: bold;
     color: white;
-    background-color: none;
+    background-color: #333;
     transition: background-color 0.25s ease;
 }
 
-.navbutton:hover {
+.navbutton:hover, .navbutton:focus, .navbutton:active {
     background-color: #ff7402;
     transition: background-color 0.25s ease;
+}
+
+#submenu-profile, #submenu-cart {
+    list-style: none;
+    display: flex;
+    position: absolute;
+    right: -1px;
+    top: -95px;
+    height: auto;
+    margin: 0px;
+    margin-top: 200px;
+    padding: 0px;
+    background-color: #333;
+    transition: top 0.25s ease;
+    z-index: -999;
+}
+
+#submenu-cart {
+    width: auto;
+    top: -23px;
+}
+
+.navbutton:hover #submenu-profile, .navbutton:focus #submenu-profile, .navbutton:active #submenu-profile {
+    top: 50px;
+    transition: top 0.25s ease;
+    z-index: -999;
+}
+
+.navbutton:hover #submenu-cart, .navbutton:focus #submenu-cart, .navbutton:active #submenu-cart {
+    top: 50px;
+    transition: top 0.25s ease;
+    z-index: -999;
+}
+
+#submenu-profile:first-child {
+    border-left: 1px solid darkgray;
+    z-index: -999;
+}
+
+#submenu-cart:first-child {
+    border-left: 1px solid darkgray;
+    z-index: -999;
+}
+
+.navsubmenu {
+    height: 35px;
+    width: 110px;
+    height: auto;
+    border: 1px solid darkgray;
+    border-left: none;
+    text-align: center;
+    padding: 0px 15px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 35px;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    background-color: #333;
+    transition: background-color 0.25s ease;
+    z-index: -999;
+}
+
+#submenu-profile .navsubmenu {
+    width: 70px;
+}
+
+.navsubmenu:hover, .navsubmenu:focus, .navsubmenu:active {
+    background-color: #ff7402;
+    transition: background-color 0.25s ease;
+    z-index: -999;
 }
 
 #wrapper {

@@ -15,8 +15,6 @@
                     echo '<p>Benvenuto, ospite!</p>';
                 }
             ?>
-            <br>
-            <p><a href="./logout.php">Logout</a></p>
             <div id="space-down"></div>
         </div>
     <?php include_once("./public/footer.php"); ?>
