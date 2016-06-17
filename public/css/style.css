@@ -107,19 +107,20 @@ body {
     display: flex;
     position: absolute;
     right: -1px;
-    top: -95px;
+    top: 13px;
     height: auto;
     margin: 0px;
     margin-top: 200px;
     padding: 0px;
     background-color: #333;
     transition: top 0.25s ease;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
     z-index: -999;
 }
 
 #submenu-cart {
     width: auto;
-    top: -23px;
 }
 
 .navbutton:hover #submenu-profile, .navbutton:focus #submenu-profile, .navbutton:active #submenu-profile {
@@ -158,7 +159,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     color: white;
-    background-color: #333;
+    background-color: #222;
     transition: background-color 0.25s ease;
     z-index: -999;
 }
@@ -171,6 +172,14 @@ body {
     background-color: #ff7402;
     transition: background-color 0.25s ease;
     z-index: -999;
+}
+
+#submenu-cart > a:first-child > .navsubmenu, #submenu-profile > a:first-child > .navsubmenu {
+    border-bottom-left-radius: 5px;
+}
+
+#submenu-cart > a:last-child > .navsubmenu, #submenu-profile > a:last-child > .navsubmenu {
+    border-bottom-right-radius: 5px;
 }
 
 #wrapper {
@@ -203,7 +212,9 @@ body {
     text-decoration: none;
 }
 
+/*****************/
 /* Page elements */
+/*****************/
 h1, h2, h3 {
     padding: 20px 0;
     margin: 0 auto;
