@@ -5,13 +5,14 @@
 Features:
  - Home page (starter)
  - User login/logout
+ - User signup
 
 To-do list:
 
  - Home page (full)
- - User login/signup
  - Custom user dashboard
  - User cart
  - Product research
  - Category browsing
  - Administration tools
+ - More cities to be added

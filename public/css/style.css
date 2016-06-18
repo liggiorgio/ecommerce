@@ -10,7 +10,7 @@ a {
 
 html {
     width: 100%;
-    min-width: 580px;
+    min-width: 750px;
     height: 100%;
     margin: 0px;
     padding: 0px;
@@ -25,7 +25,7 @@ body {
 
 #navbar {
     width: 100%;
-    min-width: 580px;
+    min-width: 750px;
     height: auto;
     min-height: 50px;
     display: inline-block;
@@ -74,6 +74,7 @@ body {
     list-style: none;
     float: right;
     height: inherit;
+    display: flex;
     margin: 0px;
     padding: 0px;
     z-index: 999;
@@ -84,9 +85,9 @@ body {
     width: auto;
     border-left: 1px solid darkgray;
     position: relative;
-    display: inline-block;
     text-align: center;
     padding: 0px 20px;
+    margin: 0px;
     font-family: Arial, sans-serif;
     font-size: 18px;
     line-height: 50px;
@@ -107,7 +108,7 @@ body {
     display: flex;
     position: absolute;
     right: -1px;
-    top: 13px;
+    top: -10px;
     height: auto;
     margin: 0px;
     margin-top: 200px;
@@ -238,7 +239,7 @@ form div p {
     display: table-row;
 }
 
-form div label, form div input {
+form div label, form div input, form div select {
     display: table-cell;
     margin: 5px 20px;
 }
@@ -259,5 +260,19 @@ form span {
 }
 
 #box-error span {
+    font-weight: bold;
+}
+
+#box-message {
+    display: table;
+    margin: 0 auto;
+    border: 1px solid #009a00;
+    background-color: #8cff87;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px 50px;
+}
+
+#box-message span {
     font-weight: bold;
 }

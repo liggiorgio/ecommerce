@@ -9,12 +9,19 @@
         exit;
     }
 
-    if (!isset($_SESSION['error']))
-        $_SESSION['error'] = 0;
+    $error = 0;
+    $message = 0;
+
+    if (isset($_SESSION['success']) && ($_SESSION['success'] == 1)) {
+        $message = 1;
+        $_SESSION['success'] = 0;
+    }
 
     // Verifica richiesta di login
-    if (isset($_POST['email']) && ($_POST['email'] != "") &&
-        isset($_POST['password']) && ($_POST['password'] != "")) {
+    if (isset($_POST['email']) && !empty($_POST['email']) && (!isset($_POST['password']) || empty($_POST['password'])))
+            $error = 2;
+    if (isset($_POST['email']) && !empty($_POST['email']) &&
+        isset($_POST['password']) && !empty($_POST['password'])) {
         $email = htmlspecialchars(trim($_POST['email']));
         $password = md5(htmlspecialchars(trim($_POST['password'])).$salt);
         
@@ -33,9 +40,7 @@
         } else {
             // Login fallito
             $_SESSION['status'] = 0;
-            $_SESSION['error'] = 1;
-            header("Location: login.php");
-            exit;
+            $error = 1;
         }
     }
 ?>
@@ -46,15 +51,19 @@
             <h1>Accesso</h1>
             <?php
                 // Errore di accesso
-                if (isset($_SESSION['error']) && ($_SESSION['error'] == 1))
+                if (isset($error) && ($error == 1))
                     echo '<div id="box-error"><span>Errore durante l\'accesso</span><p>L\'
                     indirizzo e-mail o la password inseriti non sono validi.</p></div>';
+                if (isset($error) && ($error == 2))
+                    echo '<div id="box-error"><span>Errore durante l\'accesso</span><p>Devi compilare tutti i campi di testo.</p></div>';
+                if (isset($message) && ($message == 1))
+                    echo '<div id="box-message"><span>Registrazione completata</span><p>Adesso puoi inserire le tue credenziali per effettuare l\'accesso.</p></div>';
             ?>
             <form method="post">
                 <div>
                     <h4>Informazioni account</h4>
-                    <p><label>Indirizzo e-mail:</label><input type="email" name="email"></p>
-                    <p><label>Password:</label><input type="password" name="password"></p><br>
+                    <p><label>Indirizzo e-mail:</label><input type="email" name="email" placeholder="indirizzo@esempio.it"></p>
+                    <p><label>Password:</label><input type="password" name="password" placeholder="Password"></p><br>
                 </div>
                 <span><input type="submit" value="Accedi"></span>
             </form>

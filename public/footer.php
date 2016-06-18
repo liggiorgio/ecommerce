@@ -1,3 +1,3 @@
 <div id="footer">
-    eCommerce © 2016, Liggio Giorgio
+    eCommerce © 2016, Giorgio Liggio
 </div>

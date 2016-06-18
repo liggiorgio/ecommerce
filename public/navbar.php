@@ -6,41 +6,22 @@
     <ul>
         <?php
             if (isset($_SESSION['status']) && ($_SESSION['status'] == 1)) {
-                /*$fullname = $_SESSION['fullname'];
-echo <<<USERBAR
-    <a><li class="navbutton">Cerca</li></a>
-    <a><li class="navbutton">Categorie</li></a>
-    <li class="navbutton">Carrello (0)
-        <ul id="submenu-cart">
-            <a><li class="navsubmenu">Visualizza carrello</li></a>
-            <a><li class="navsubmenu">Completa acquisto</li></a>
-        </ul>
-    </li>
-    <li class="navbutton">$fullname
-        <ul id="submenu-profile">
-            <a><li class="navsubmenu">Dashboard</li></a>
-            <a><li class="navsubmenu">Fatture</li></a>
-            <a><li class="navsubmenu">Impostazioni</li></a>
-            <a href="./logout.php"><li class="navsubmenu">Esci</li></a>
-        </ul>
-    </li>
-USERBAR;*/
-                echo '<a><li class="navbutton">Cerca</li></a>';
-                echo '<a><li class="navbutton">Categorie</li></a>';
-                echo '<li class="navbutton">Carrello (0)';
-                    echo '<ul id="submenu-cart">';
-                    echo '  <a><li class="navsubmenu">Visualizza carrello</li></a>';
-                    echo '  <a><li class="navsubmenu">Completa acquisto</li></a>';
-                    echo '</ul>';
-                echo '</li>';
-                echo '<li class="navbutton">'.$_SESSION['fullname'];
-                    echo '<ul id="submenu-profile">';
-                    echo '  <a><li class="navsubmenu">Dashboard</li></a>';
-                    echo '  <a><li class="navsubmenu">Fatture</li></a>';
-                    echo '  <a><li class="navsubmenu">Impostazioni</li></a>';
-                    echo '  <a href="./logout.php"><li class="navsubmenu">Esci</li></a>';
-                    echo '</ul>';
-                echo '</li>';
+                echo '<a><li class="navbutton">Cerca</li></a>
+                <a><li class="navbutton">Categorie</li></a>
+                <li class="navbutton">Carrello (0)
+                    <ul id="submenu-cart">
+                        <a><li class="navsubmenu">Visualizza carrello</li></a>
+                        <a><li class="navsubmenu">Completa acquisti</li></a>
+                    </ul>
+                </li>
+                <li class="navbutton">'.$_SESSION['fullname'].'
+                    <ul id="submenu-profile">
+                        <a><li class="navsubmenu">Dashboard</li></a>
+                        <a><li class="navsubmenu">Fatture</li></a>
+                        <a><li class="navsubmenu">Impostazioni</li></a>
+                        <a href="./logout.php"><li class="navsubmenu">Esci</li></a>
+                    </ul>
+                </li>';
                 }
             else {
                 echo '<a href="./login.php" title="Accedi"><li class="navbutton">Accedi</li></a>';
