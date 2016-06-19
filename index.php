@@ -14,6 +14,13 @@
                 } else {
                     echo '<p>Benvenuto, ospite!</p>';
                 }
+            
+                echo '<div id="arts-container"><span class="stretch"></span>';
+                    $artsset = mysql_query("SELECT * FROM articles ORDER BY cat");
+                    while ($articles = mysql_fetch_array($artsset)) {
+                        echo '<a class="article" title="Clicca per i dettagli"><img src="'.$articles['thumb'].'"/><br><span class="price">'.$articles['price'].'€</span><span class="amount">Disponibili: '.$articles['amount'].'</span><br><br><span class="artname">'.$articles['name'].'</span></a>';
+                    }
+                echo '<span class="stretch"></span></div>';
             ?>
             <div id="space-down"></div>
         </div>
