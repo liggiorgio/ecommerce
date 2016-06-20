@@ -300,13 +300,13 @@ form span {
     font-size: 14px;
     display: inline-block;
     *display: inline;
-    width: 240px;
-    height: 350px;
+    width: 170px;
+    height: 220px;
     text-align: center;
     float: left;
     margin: 0 auto;
     padding: 5px;
-    margin: 8px;
+    margin: 9px;
 }
 
 .article:hover {
@@ -322,10 +322,10 @@ form span {
     padding: 0 5px;
     border-radius: 50px;
     float: left;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
-.amount {
+.amount-available {
     position: relative;
     bottom: 0px;
     font-weight: bold;
@@ -334,15 +334,40 @@ form span {
     padding: 0 5px;
     border-radius: 50px;
     float: right;
-    margin-right: 20px;
+    margin-right: 10px;
+}
+
+.amount-limited {
+    position: relative;
+    bottom: 0px;
+    font-weight: bold;
+    background-color: orange;
+    color: white;
+    padding: 0 5px;
+    border-radius: 50px;
+    float: right;
+    margin-right: 10px;
+}
+
+.amount-ended {
+    position: relative;
+    bottom: 0px;
+    font-weight: bold;
+    background-color: red;
+    color: white;
+    padding: 0 5px;
+    border-radius: 50px;
+    float: right;
+    margin-right: 10px;
 }
 
 .artname {
-    width: 200px;
-    text-align: justify;
+    
 }
 
 .article img {
+    width: 60%;
+    height: auto;
 }
 
 .article:hover img {
