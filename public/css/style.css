@@ -311,6 +311,7 @@ form span {
 
 .article:hover {
     border: 2px solid #ff7402;
+    box-shadow: 0px 0px 7px gray;
 }
 
 .price {
@@ -342,6 +343,18 @@ form span {
     bottom: 0px;
     font-weight: bold;
     background-color: orange;
+    color: white;
+    padding: 0 5px;
+    border-radius: 50px;
+    float: right;
+    margin-right: 10px;
+}
+
+.amount-last {
+    position: relative;
+    bottom: 0px;
+    font-weight: bold;
+    background-color: orangered;
     color: white;
     padding: 0 5px;
     border-radius: 50px;

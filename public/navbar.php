@@ -6,7 +6,7 @@
     <ul>
         <?php
             echo '<a href="./search.php" title="Cerca un prodotto"><li class="navbutton">Cerca</li></a>
-                <a><li class="navbutton">Categorie</li></a>';
+                <a href="./categories.php" title="Esplora le categorie"><li class="navbutton">Categorie</li></a>';
             if (isset($_SESSION['status']) && ($_SESSION['status'] == 1)) {
                 echo '<li class="navbutton">Carrello (0)
                     <ul id="submenu-cart">

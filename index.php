@@ -4,25 +4,21 @@
     include_once("./public/navbar.php");
 
     function show_article_thumb($articles) {
+        echo '<a class="article" title="Clicca per dettaglio articolo"><img src="./public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
+        
         if ($articles['amount'] > 15) {
-            echo '<a class="article" title="Clicca per dettaglio articolo"><img src="./public/res/articles/'.$articles['id'].'.png"/><br><span class="price">'.$articles['price'].'€</span><span class="amount-available">Q.tà: '.$articles['amount'].'</span><br><br><span class="artname">'.substr($articles['name'],0,77);
-            if (strlen($articles['name']) > 77) {
-                echo '...';
-            }
-            echo '</span></a>';
+            echo '<span class="amount-available">Q.tà: '.$articles['amount'];
+        } elseif ($articles['amount'] > 5) {
+            echo '<span class="amount-limited">Q.tà: '.$articles['amount'];
         } elseif ($articles['amount'] > 0) {
-            echo '<a class="article" title="Clicca per dettaglio articolo"><img src="./public/res/articles/'.$articles['id'].'.png"/><br><span class="price">'.$articles['price'].'€</span><span class="amount-limited">Q.tà: '.$articles['amount'].'</span><br><br><span class="artname">'.substr($articles['name'],0,77);
-            if (strlen($articles['name']) > 77) {
-                echo '...';
-            }
-            echo '</span></a>';
+            echo '<span class="amount-last">Q.tà: '.$articles['amount'];
         } else {
-            echo '<a class="article" title="Clicca per dettaglio articolo"><img src="./public/res/articles/'.$articles['id'].'.png"/><br><span class="price">'.$articles['price'].'€</span><span class="amount-ended">N/D</span><br><br><span class="artname">'.substr($articles['name'],0,77);
-            if (strlen($articles['name']) > 77) {
-                echo '...';
-            }
-            echo '</span></a>';
+            echo '<span class="amount-ended">N/D';
         }
+        
+        echo '</span><br><br><span class="artname">'.substr($articles['name'],0,77);
+        if (strlen($articles['name']) > 77) { echo '...'; }
+        echo '</span></a>';
     }
 ?>
         <div id="wrapper">
