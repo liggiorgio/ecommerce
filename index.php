@@ -4,7 +4,7 @@
     include_once("./public/navbar.php");
 
     function show_article_thumb($articles) {
-        echo '<a class="article" title="Clicca per dettaglio articolo"><img src="./public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
+        echo '<a class="article" title="Clicca per dettaglio articolo" href="./article.php?id='.$articles['id'].'"><img src="./public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
         
         if ($articles['amount'] > 15) {
             echo '<span class="amount-available">Q.tà: '.$articles['amount'];
@@ -33,13 +33,13 @@
                     echo '<p>Benvenuto, ospite!</p>';
                 }
             
-                echo '<div id="arts-container"><span class="stretch"></span>';
+                echo '<div id="container"><span class="stretch"></span>';
                     $artsset = mysql_query("SELECT * FROM articles ORDER BY cat");
                     while ($articles = mysql_fetch_array($artsset)) {
                         show_article_thumb($articles);
                     }
-                echo '<span class="stretch"></span></div>';
             ?>
+                <span class="stretch"></span></div>
             <div id="space-down"></div>
         </div>
     <?php include_once("./public/footer.php"); ?>

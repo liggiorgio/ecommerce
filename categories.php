@@ -8,8 +8,18 @@
             
             <!--- Page content --->
             <h1>Categorie</h1>
-            <p>Sfoglia gli articoli in vendita per categoria di prodotti.</p>
-            
+            <p>Esplora i prodotti navigando per categoria di articoli.</p>
+            <?php
+                echo '<div id="container"><span class="stretch"></span>';
+                    $catsset = mysql_query("SELECT * FROM categories ORDER BY id");
+                while ($categories = mysql_fetch_array($catsset)) {
+                    echo '<a class="category" title="Esplora articoli in '.$categories['name'].'">
+                    <span class="catname">'.$categories['name'].'</span>
+                    <img src="./public/res/categories/'.$categories['id'].'.jpg">
+                    <span class="catdescr">'.$categories['descr'].'</span></a>';
+                }
+            ?>
+                <span class="stretch"></span></div>
             <div id="space-down"></div>
         </div>
     <?php include_once("./public/footer.php"); ?>

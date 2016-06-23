@@ -6,6 +6,7 @@
 
 a {
     text-decoration: none;
+    color: black;
 }
 
 html {
@@ -281,7 +282,7 @@ form span {
     font-weight: bold;
 }
 
-#arts-container {
+#container {
     width: 100%;
     min-height: 360px;
     text-align: center;
@@ -375,7 +376,7 @@ form span {
 }
 
 .artname {
-    
+    text-decoration: none;
 }
 
 .article img {
@@ -385,4 +386,53 @@ form span {
 
 .article:hover img {
     
+}
+
+.category {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+    display: inline-block;
+    *display: inline;
+    width: 46%;
+    height: 130px;
+    text-align: left;
+    float: left;
+    margin: 0 auto;
+    padding: 5px;
+    margin: 9px;
+}
+
+.catname {
+    position: relative;
+    bottom: 0px;
+    font-weight: bold;
+    background-color: #ff7402;
+    color: white;
+    padding: 0 10px;
+    border-radius: 50px;
+    font-size: 18px;
+    margin: 10px;
+    width: 55%;
+    float: left;
+}
+
+.catdescr {
+    position: relative;
+    width: 60%;
+    height: auto;
+    float: left;
+    margin: 10px;
+}
+
+.category:hover {
+    border: 2px solid #ff7402;
+    box-shadow: 0px 0px 7px gray;
+}
+
+.category img {
+    height: 105px;
+    width: 105px;
+    margin: 12px;
+    float: right;
 }
