@@ -1,4 +1,5 @@
 <?php
+    $pagename = "Registrazione";
     include_once("./config.php");
     include_once("./public/header.php");
     include_once("./public/navbar.php");
@@ -33,13 +34,16 @@
             $city = $_POST['city'];
             $email = htmlspecialchars(trim($_POST['email']));
             $password = md5(htmlspecialchars(trim($_POST['password'])).$salt);
-        
-        $query = "INSERT INTO users(firstname,lastname,email,password,address,city) VALUES('$firstname','$lastname','$email','$password','$address','$city')";
-        $res = mysql_query($query) or die("Impossibile registrarsi");
-        $_SESSION['status'] = 0;
-        $_SESSION['success'] = 1;
-        header("Location: login.php");
-        exit;
+            $query = "INSERT INTO users(firstname,lastname,email,password,address,city) VALUES('$firstname','$lastname','$email','$password','$address','$city')";
+            $res = mysql_query($query) or ($error = 3);
+            if ($error == 0) {
+                $_SESSION['status'] = 0;
+                $_SESSION['success'] = 1;
+                header("Location: login.php");
+                exit;
+        } else {
+            $error = 3;
+        }
     }
 ?>
         <div id="wrapper">
@@ -48,11 +52,13 @@
             <!--- Page content --->
             <h1>Registrazione</h1>
             <?php
-                if ($error==1)   // Condizione migliorabile
+                if ($error==1)   // Generico
                     echo '<div id="box-error"><span>Errore durante la registrazione</span><p>Non è stato possibile
                     completare l\'operazione, riprova più tardi.</p></div>';
-                if ($error==2)   // Condizione migliorabile
+                if ($error==2)   // Campi vuoti
                     echo '<div id="box-error"><span>Errore durante la registrazione</span><p>Devi compilare tutti i campi richiesti.</p></div>';
+                if ($error==3)   // E-mail già usata
+                    echo '<div id="box-error"><span>Errore durante la registrazione</span><p>L\'indirizzo e-mail inserito è già utilizzato da un altro account.</p></div>';
             ?>
             <form method="post">
                 <div>
