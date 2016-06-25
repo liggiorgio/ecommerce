@@ -28,7 +28,9 @@
                                 <p><b>Indirizzo: </b>'.$user['address'].'</p>
                                 <p><b>Città: </b>'.$user['city'].'</p>
                             </div>
-                            <button title="Modifica informazioni personali">Modifica</button>
+                            <form action="./edit_profile.php">
+                                <input type="submit" value="Modifica">
+                            </form>
                         </div>
                         <span class="stretch"></span>
                         <span class="stretch"></span>
@@ -38,7 +40,9 @@
                                 <p><b>Indirizzo e-mail</b><br>'.$user['email'].'</p>
                                 <p><b>Password</b><br>**********</p>
                             </div>
-                            <button title="Modifica informazioni account">Modifica</button>
+                            <form action="./edit_account.php">
+                                <input type="submit" value="Modifica">
+                            </form>
                         </div>
                         <span class="stretch"></span>
                         <span class="stretch"></span>
