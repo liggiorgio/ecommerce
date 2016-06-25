@@ -6,7 +6,7 @@
     } else {
         $my_id = $_GET['id'];
     }
-    $res = mysql_query("SELECT articles.id AS id, articles.name AS name, articles.descr AS descr, price, amount, categories.id AS cat, categories.name AS catname FROM articles, categories WHERE articles.id = '$my_id' AND articles.cat = categories.id");
+    $res = mysql_query("SELECT articles.id AS id, articles.name AS name, articles.descr AS descr, cat, price, amount, categories.name AS catname FROM articles, categories WHERE articles.id = '$my_id' AND articles.cat = categories.id");
     if (mysql_num_rows($res)>0) {
         $article = mysql_fetch_array($res);
         $pagename = $article['name'];
@@ -28,7 +28,7 @@
                     echo '<h1>Dettaglio articolo</h1>
                           <div class="art-detail">
                             <p class="artname-detail">'.$article['name'].'</p>
-                            <p class="artcat-detail">Categoria: <a href="#" title="Esplora tutto in '.$article['catname'].'">'.$article['catname'].'</a></p><br>
+                            <p class="artcat-detail">Categoria: <a href="./browsecategory.php?id='.$article['cat'].'" title="Esplora tutto in '.$article['catname'].'">'.$article['catname'].'</a></p><br>
                             <img src="./public/res/articles/'.$article['id'].'.jpg"/>';
                             echo '<div class="addtocart">[Placeholder]<br><a href="#">Aggiungi al carrello</a><br><br>[Placeholder]<br><a href="#">Acquista subito</a></div>';
                             echo '<br><p><span class="artlabel-detail">Prezzo:</span><br><span class="artprice-detail">'.$article['price'].'€</span></p>

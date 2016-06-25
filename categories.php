@@ -14,7 +14,7 @@
                 echo '<div id="container"><span class="stretch"></span>';
                     $catsset = mysql_query("SELECT * FROM categories ORDER BY id");
                 while ($categories = mysql_fetch_array($catsset)) {
-                    echo '<a class="category" title="Esplora articoli in '.$categories['name'].'">
+                    echo '<a class="category" href="./browsecategory.php?id='.$categories['id'].'" title="Esplora articoli in '.$categories['name'].'">
                     <span class="catname">'.$categories['name'].'</span>
                     <img src="./public/res/categories/'.$categories['id'].'.jpg">
                     <span class="catdescr">'.$categories['descr'].'</span></a>';
