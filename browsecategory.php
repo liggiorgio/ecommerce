@@ -6,7 +6,8 @@
     } else {
         $my_id = $_GET['id'];
     }
-    $currentcat = mysql_fetch_array(mysql_query("SELECT name FROM categories WHERE id=".$my_id))['name'];
+    $currentcat = mysql_fetch_array(mysql_query("SELECT name FROM categories WHERE id=".$my_id));
+    $currentcat = $currentcat['name'];
     $pagename = $currentcat;
     include_once("./public/header.php");
     include_once("./public/navbar.php");
@@ -35,7 +36,7 @@
             <!--- Page content --->
             <h1>Esplora la categoria</h1>
             <?php
-                echo '<p class="artcat-detail">Articoli nella categoria "'.$currentcat.'"</p><br>';            
+                echo '<p class="artcat-detail">Articoli nella categoria "'.$currentcat.'"</p>';            
                 echo '<div id="container"><span class="stretch"></span>';
                     $artsset = mysql_query("SELECT * FROM articles WHERE cat=".$my_id);
                     if (mysql_num_rows($artsset)>0) {

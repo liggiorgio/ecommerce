@@ -26,7 +26,7 @@
         $email = htmlspecialchars(trim($_POST['email']));
         $password = md5(htmlspecialchars(trim($_POST['password'])).$salt);
         
-        $query = "SELECT id, firstname, lastname, is_admin FROM users WHERE email = '$email' AND password = '$password'";
+        $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
         $res = mysql_query($query) or die("<br><br><br>Impossibile completare l'operazione");
         
         if (mysql_num_rows($res)>0) {
@@ -34,8 +34,7 @@
             $_SESSION['status'] = 1;
             $_SESSION['error'] = 0;
             $_SESSION['id'] = mysql_result($res,0,'id');
-            $_SESSION['firstname'] = mysql_result($res,0,'firstname');
-            $_SESSION['fullname'] = $_SESSION['firstname']." ".mysql_result($res,0,'lastname');
+            $_SESSION['fullname'] = mysql_result($res,0,'firstname')." ".mysql_result($res,0,'lastname');
             $_SESSION['admin'] = mysql_result($res,0,'is_admin');
             header("Location: index.php");
             exit;

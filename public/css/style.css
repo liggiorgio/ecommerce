@@ -549,3 +549,29 @@ form span {
     float: right;
     border: 1px solid gray;
 }
+
+#account-info {
+    margin: 20px;
+    display: inline-block;
+    width: 95%;
+}
+
+.user-info-table {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+.user-text {
+    margin-left: 20px;
+    float: left;
+}
+
+.user-text p {
+    margin: 6px 0;
+}
+
+.user-info-table button {
+    margin: 20px;
+    float: right;
+}

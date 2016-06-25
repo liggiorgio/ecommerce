@@ -28,12 +28,7 @@
             <!--- Page content --->
             <h1>Home Page</h1>
             <?php
-                if (isset($_SESSION['status']) && ($_SESSION['status'] == 1)) {
-                    echo '<p>Benvenuto, '.$_SESSION['fullname'].'!</p>';
-                } else {
-                    echo '<p>Benvenuto, ospite!</p>';
-                }
-            
+                echo '<p class="artcat-detail">Ultimi arrivi</p>';
                 echo '<div id="container"><span class="stretch"></span>';
                     $artsset = mysql_query("SELECT * FROM articles ORDER BY cat");
                     while ($articles = mysql_fetch_array($artsset)) {
