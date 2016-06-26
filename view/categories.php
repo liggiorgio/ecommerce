@@ -1,8 +1,8 @@
 <?php
     $pagename = "Categorie";
-    include_once("./config.php");
-    include_once("./public/header.php");
-    include_once("./public/navbar.php");
+    include_once("../config.php");
+    include_once("../public/header.php");
+    include_once("../public/navbar.php");
 ?>
         <div id="wrapper">
             <div id="space-up"></div>
@@ -14,15 +14,15 @@
                 echo '<div id="container"><span class="stretch"></span>';
                     $catsset = mysql_query("SELECT * FROM categories ORDER BY id");
                 while ($categories = mysql_fetch_array($catsset)) {
-                    echo '<a class="category" href="./browsecategory.php?id='.$categories['id'].'" title="Esplora articoli in '.$categories['name'].'">
+                    echo '<a class="category" href="/view/browsecategory.php?id='.$categories['id'].'" title="Esplora articoli in '.$categories['name'].'">
                     <span class="catname">'.$categories['name'].'</span>
-                    <img src="./public/res/categories/'.$categories['id'].'.jpg">
+                    <img src="/public/res/categories/'.$categories['id'].'.jpg">
                     <span class="catdescr">'.$categories['descr'].'</span></a>';
                 }
             ?>
                 <span class="stretch"></span></div>
             <div id="space-down"></div>
         </div>
-    <?php include_once("./public/footer.php"); ?>
+    <?php include_once("../public/footer.php"); ?>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
-    include_once("./config.php");
+    include_once("../config.php");
     if (!isset($_GET['id']) || empty($_GET['id'])) {
-        header("Location: categories.php");
+        header("Location: /categories.php");
         exit;
     } else {
         $my_id = $_GET['id'];
@@ -9,11 +9,11 @@
     $currentcat = mysql_fetch_array(mysql_query("SELECT name FROM categories WHERE id=".$my_id));
     $currentcat = $currentcat['name'];
     $pagename = $currentcat;
-    include_once("./public/header.php");
-    include_once("./public/navbar.php");
+    include_once("../public/header.php");
+    include_once("../public/navbar.php");
 
     function show_article_thumb($articles) {
-        echo '<a class="article" title="Clicca per dettaglio articolo" href="./article.php?id='.$articles['id'].'"><img src="./public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
+        echo '<a class="article" title="Clicca per dettaglio articolo" href="/view/article.php?id='.$articles['id'].'"><img src="/public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
         
         if ($articles['amount'] > 15) {
             echo '<span class="amount-available">Q.tà: '.$articles['amount'];
@@ -50,6 +50,6 @@
                 <span class="stretch"></span></div>
             <div id="space-down"></div>
         </div>
-    <?php include_once("./public/footer.php"); ?>
+    <?php include_once("../public/footer.php"); ?>
     </body>
 </html>

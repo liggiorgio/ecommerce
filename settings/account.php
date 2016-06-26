@@ -1,12 +1,12 @@
 <?php
-    $pagename = "Modifica profilo";
-    include_once("./config.php");
-    include_once("./public/header.php");
-    include_once("./public/navbar.php");
+    $pagename = "Modifica account";
+    include_once("../config.php");
+    include_once("../public/header.php");
+    include_once("../public/navbar.php");
 
     // Se l'utente ha già effettuato il login, riporta alla pagina iniziale
     if (!isset($_SESSION['status']) || ($_SESSION['status'] == 0)) {
-        header("Location: login.php");
+        header("Location: /login.php");
         exit;
     }
     $res = mysql_query("SELECT email FROM users WHERE users.id=".$_SESSION['id']);
@@ -27,7 +27,7 @@
             $res = mysql_query($query) or ($error = 1);
             if ($error == 0) {
                 $_SESSION['success'] = 1;
-                header("Location: dashboard.php");
+                header("Location: /dashboard.php");
                 exit;
             } else {
                 $error = 3;
@@ -39,7 +39,7 @@
             $res = mysql_query($query) or ($error = 1);
             if ($error == 0) {
                 $_SESSION['success'] = 1;
-                header("Location: dashboard.php");
+                header("Location: /dashboard.php");
                 exit;
             } else {
                 $error = 3;
@@ -72,6 +72,6 @@
             
             <div id="space-down"></div>
         </div>
-    <?php include_once("./public/footer.php"); ?>
+    <?php include_once("../public/footer.php"); ?>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
-    include_once("./config.php");
+    include_once("../config.php");
     if (!isset($_GET['id']) || empty($_GET['id'])) {
-        header("Location: index.php");
+        header("Location: /index.php");
         exit;
     } else {
         $my_id = $_GET['id'];
@@ -15,8 +15,8 @@
         $pagename = "Errore";
         $error = 1;
     }
-    include_once("./public/header.php");
-    include_once("./public/navbar.php");                        
+    include_once("../public/header.php");
+    include_once("../public/navbar.php");                        
 ?>
         <div id="wrapper">
             <div id="space-up"></div>
@@ -28,8 +28,8 @@
                     echo '<h1>Dettaglio articolo</h1>
                           <div class="art-detail">
                             <p class="artname-detail">'.$article['name'].'</p>
-                            <p class="artcat-detail">Categoria: <a href="./browsecategory.php?id='.$article['cat'].'" title="Esplora tutto in '.$article['catname'].'">'.$article['catname'].'</a></p><br>
-                            <img src="./public/res/articles/'.$article['id'].'.jpg"/>';
+                            <p class="artcat-detail">Categoria: <a href="/view/browsecategory.php?id='.$article['cat'].'" title="Esplora tutto in '.$article['catname'].'">'.$article['catname'].'</a></p><br>
+                            <img src="/public/res/articles/'.$article['id'].'.jpg"/>';
                             echo '<div class="addtocart">[Placeholder]<br><a href="#">Aggiungi al carrello</a><br><br>[Placeholder]<br><a href="#">Acquista subito</a></div>';
                             echo '<br><p><span class="artlabel-detail">Prezzo:</span><br><span class="artprice-detail">'.$article['price'].'€</span></p>
                             <br><br><br><br><p><span class="artlabel-detail">Disponibilità:</span>';
@@ -51,6 +51,6 @@
             
             <div id="space-down"></div>
         </div>
-    <?php include_once("./public/footer.php"); ?>
+    <?php include_once("../public/footer.php"); ?>
     </body>
 </html>

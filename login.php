@@ -32,6 +32,7 @@
         if (mysql_num_rows($res)>0) {
             // Login effettuato con successo
             $_SESSION['status'] = 1;
+            $_SESSION['success'] = 1;
             $_SESSION['error'] = 0;
             $_SESSION['id'] = mysql_result($res,0,'id');
             $_SESSION['fullname'] = mysql_result($res,0,'firstname')." ".mysql_result($res,0,'lastname');

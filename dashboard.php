@@ -5,7 +5,7 @@
     include_once("./public/navbar.php");
 
     if (!isset($_SESSION['status']) || ($_SESSION['status'] == 0)) {
-        header("Location: login.php");
+        header("Location: /login.php");
         exit;
     }
     
@@ -34,7 +34,7 @@
                                 <p><b>Città: </b>'.$user['city'].'</p>
                                 <p><b>Membro dal: </b>'.$user['since'].'</p>
                             </div>
-                            <form action="./edit_profile.php">
+                            <form action="/settings/profile.php">
                                 <input type="submit" value="Modifica">
                             </form>
                         </div>
@@ -46,7 +46,7 @@
                                 <p><b>Indirizzo e-mail: </b>'.$user['email'].'</p>
                                 <p><b>Password: </b>**********</p>
                             </div>
-                            <form action="./edit_account.php">
+                            <form action="/settings/account.php">
                                 <input type="submit" value="Modifica">
                             </form>
                         </div>

@@ -4,8 +4,13 @@
     include_once("./public/header.php");
     include_once("./public/navbar.php");
 
+    if (isset($_SESSION['success']) && ($_SESSION['success'] == 1)) {
+        $message = 1;
+        $_SESSION['success'] = 0;
+    }
+
     function show_article_thumb($articles) {
-        echo '<a class="article" title="Clicca per dettaglio articolo" href="./article.php?id='.$articles['id'].'"><img src="./public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
+        echo '<a class="article" title="Clicca per dettaglio articolo" href="/view/article.php?id='.$articles['id'].'"><img src="/public/res/articles/'.$articles['id'].'.jpg"/><br><span class="price">'.$articles['price'].'€</span>';
         
         if ($articles['amount'] > 15) {
             echo '<span class="amount-available">Q.tà: '.$articles['amount'];
@@ -36,6 +41,8 @@
                     }
             ?>
                 <span class="stretch"></span></div>
+            <?php if (isset($message) && ($message == 1))
+                        echo "<script type='text/javascript'>alert('Bentornato, ".$_SESSION['fullname']."!');</script>";?>
             <div id="space-down"></div>
         </div>
     <?php include_once("./public/footer.php"); ?>
