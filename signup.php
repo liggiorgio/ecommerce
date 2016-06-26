@@ -7,7 +7,7 @@
     // Se l'utente ha già effettuato il login, riporta alla pagina iniziale
     if ((isset($_SESSION['status'])) && ($_SESSION['status'] == 1)) {
         header("Location: index.php");
-        EXIT;
+        exit;
     }
 
     $error = 0;

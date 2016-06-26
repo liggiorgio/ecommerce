@@ -8,6 +8,11 @@
         header("Location: login.php");
         exit;
     }
+    
+    if (isset($_SESSION['success']) && ($_SESSION['success'] == 1)) {
+        $message = 1;
+        $_SESSION['success'] = 0;
+    }
 ?>
         <div id="wrapper">
             <div id="space-up"></div>
@@ -16,7 +21,7 @@
             <h1>Dashboard</h1>
             <p>Visualizza e modifica il tuo profilo personale, e visualizza le tue attività recenti.</p>
             <?php
-                $res = mysql_query("SELECT firstname, lastname, address, email, cities.name AS city FROM users, cities WHERE users.id=".$_SESSION['id']." AND users.city = cities.id");
+                $res = mysql_query("SELECT firstname, lastname, address, email, cities.name AS city, since FROM users, cities WHERE users.id=".$_SESSION['id']." AND users.city = cities.id");
                 $user = mysql_fetch_array($res);
                 echo '<span class="stretch"></span>
                     <div id="account-info">
@@ -27,6 +32,7 @@
                                 <p><b>Cognome: </b>'.$user['lastname'].'</p>
                                 <p><b>Indirizzo: </b>'.$user['address'].'</p>
                                 <p><b>Città: </b>'.$user['city'].'</p>
+                                <p><b>Membro dal: </b>'.$user['since'].'</p>
                             </div>
                             <form action="./edit_profile.php">
                                 <input type="submit" value="Modifica">
@@ -37,8 +43,8 @@
                         <div class="user-info-table">
                             <p class="artcat-detail">Informazioni account</p>
                             <div class="user-text">
-                                <p><b>Indirizzo e-mail</b><br>'.$user['email'].'</p>
-                                <p><b>Password</b><br>**********</p>
+                                <p><b>Indirizzo e-mail: </b>'.$user['email'].'</p>
+                                <p><b>Password: </b>**********</p>
                             </div>
                             <form action="./edit_account.php">
                                 <input type="submit" value="Modifica">
@@ -53,6 +59,8 @@
                             </div>
                         </div>
                     </div><span class="stretch"></span>';
+                if (isset($message) && ($message == 1))
+                        echo "<script type='text/javascript'>alert('Tutte le modifiche apportate sono state correttamente salvate.');</script>";
             ?>
             <div id="space-down"></div>
         </div>
