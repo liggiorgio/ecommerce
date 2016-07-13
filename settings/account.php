@@ -20,11 +20,16 @@
 
     // Verifica che tutti i campi siano stati riempiti
     if(isset($_POST['email']) && !empty($_POST['email']) &&
-       isset($_POST['password']) && !empty($_POST['password'])) {
+       isset($_POST['password1']) && !empty($_POST['password1']) &&
+       isset($_POST['password2']) && !empty($_POST['password2'])) {
             $email = htmlspecialchars(trim($_POST['email']));
-            $password = md5(htmlspecialchars(trim($_POST['password'])).$salt);
-            $query = "UPDATE users SET email='$email',password='$password' WHERE id=".$_SESSION['id'];
+            $password1 = md5(htmlspecialchars(trim($_POST['password1'])).$salt);
+            $password2 = md5(htmlspecialchars(trim($_POST['password2'])).$salt);
+            $query = "UPDATE users SET email='$email',password='$password1' WHERE id=".$_SESSION['id'];
             $res = mysql_query($query) or ($error = 1);
+            if ($password1 != $password2) {
+                $error = 3;
+            }
             if ($error == 0) {
                 $_SESSION['success'] = 1;
                 header("Location: /dashboard.php");
@@ -33,7 +38,8 @@
                 $error = 3;
             }
         } elseif ((isset($_POST['email']) && !empty($_POST['email'])) &&
-                  (isset($_POST['password']) && empty($_POST['password']))) {
+                  (isset($_POST['password1']) && empty($_POST['password1'])) &&
+                  (isset($_POST['password2']) && empty($_POST['password2']))) {
             $email = htmlspecialchars(trim($_POST['email']));
             $query = "UPDATE users SET email='$email' WHERE id=".$_SESSION['id'];
             $res = mysql_query($query) or ($error = 1);
@@ -41,8 +47,6 @@
                 $_SESSION['success'] = 1;
                 header("Location: /dashboard.php");
                 exit;
-            } else {
-                $error = 3;
             }
         }
 ?>
@@ -57,13 +61,16 @@
                     completare l\'operazione, riprova più tardi.</p></div>';
                 if ($error==2)   // Campi vuoti
                     echo '<div id="box-error"><span>Errore durante la modifica</span><p>Devi compilare tutti i campi richiesti.</p></div>';
+                if ($error==3)   // Password errata
+                    echo '<div id="box-error"><span>Errore durante la modifica</span><p>Le password non coincidono.</p></div>';
             ?>
             <form method="post">
                 <div>
                     <?php
                         echo '<h4>Modifica i campi di interesse</h4>
                         <p><label>Indirizzo e-mail:</label><input type="email" name="email" placeholder="indirizzo@esempio.it" value="'.$user['email'].'"></p>
-                        <p><label>Password:</label><input type="password" name="password" placeholder="Nuova password"></p><br>';
+                        <p><label>Nuova password:</label><input type="password" name="password1" placeholder="Nuova password"></p>
+                        <p><label>Conferma password:</label><input type="password" name="password2" placeholder="Conferma password"></p><br>';
                     ?>
                     </select></p><br>
                 </div>

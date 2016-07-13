@@ -30,9 +30,14 @@
                             <p class="artname-detail">'.$article['name'].'</p>
                             <p class="artcat-detail">Categoria: <a href="/view/browsecategory.php?id='.$article['cat'].'" title="Esplora tutto in '.$article['catname'].'">'.$article['catname'].'</a></p><br>
                             <img src="/public/res/articles/'.$article['id'].'.jpg"/>';
-                            echo '<div class="addtocart">[Placeholder]<br><a href="#">Aggiungi al carrello</a><br><br>[Placeholder]<br><a href="#">Acquista subito</a></div>';
                             echo '<br><p><span class="artlabel-detail">Prezzo:</span><br><span class="artprice-detail">'.$article['price'].'€</span></p>
-                            <br><br><br><br><p><span class="artlabel-detail">Disponibilità:</span>';
+                            <br><br>';
+                            if ($article['amount']>0)
+                                echo '<form action="/addtocart.php" method="post">
+                                        <input type="hidden" name="id" value="'.$article['id'].'">
+                                        <button class="addtocart" type="submit">Aggiungi al carrello</button>
+                                    </form>';
+                            echo '<br><br><p><span class="artlabel-detail">Disponibilità:</span>';
                             if ($article['amount'] > 15) {
                                 echo '<p class="artamount-detail-available">'.$article['amount'].' pezzi disponibili</p>';
                             } elseif ($article['amount'] > 5) {

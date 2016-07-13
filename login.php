@@ -36,7 +36,10 @@
             $_SESSION['error'] = 0;
             $_SESSION['id'] = mysql_result($res,0,'id');
             $_SESSION['fullname'] = mysql_result($res,0,'firstname')." ".mysql_result($res,0,'lastname');
-            $_SESSION['admin'] = mysql_result($res,0,'is_admin');
+            $_SESSION['admin'] = mysql_result($res,0,'isAdmin');
+            $res = mysql_result($res,0,'id');
+            $res = mysql_num_rows(mysql_query("SELECT * FROM carts WHERE idUser=".$res));
+            $_SESSION['cartno'] = $res;
             header("Location: index.php");
             exit;
         } else {

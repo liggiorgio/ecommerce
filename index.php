@@ -35,14 +35,12 @@
             <?php
                 echo '<p class="artcat-detail">Ultimi arrivi</p>';
                 echo '<div id="container"><span class="stretch"></span>';
-                    $artsset = mysql_query("SELECT * FROM articles ORDER BY cat");
-                    while ($articles = mysql_fetch_array($artsset)) {
-                        show_article_thumb($articles);
-                    }
+                $artsset = mysql_query("SELECT * FROM articles ORDER BY cat");
+                while ($articles = mysql_fetch_array($artsset)) {
+                    show_article_thumb($articles);
+                }
             ?>
                 <span class="stretch"></span></div>
-            <?php if (isset($message) && ($message == 1))
-                        echo "<script type='text/javascript'>alert('Bentornato, ".$_SESSION['fullname']."!');</script>";?>
             <div id="space-down"></div>
         </div>
     <?php include_once("./public/footer.php"); ?>

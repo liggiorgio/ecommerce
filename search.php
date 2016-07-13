@@ -69,12 +69,12 @@
             
             <?php
                 if (isset($_GET['query']) && !empty($_GET['query']) && ($error==0)) {
-                    echo '<p class="artcat-detail">Ricerca di "'.$my_query.'" '.$currentcat.'</p>';            
-                        echo '<div id="container"><span class="stretch"></span>';
                     if (!empty($_GET['cat']))
-                        {$artsset = mysql_query("SELECT * FROM articles WHERE cat=".$my_cat); $currentcat = ' nella categoria "'.$currentcat.'"';}
+                        {$artsset = mysql_query("SELECT * FROM articles WHERE cat=".$my_cat." AND name LIKE '%".$my_query."%'"); $currentcat = ' nella categoria "'.$currentcat.'"';}
                     else
-                        {$artsset = mysql_query("SELECT * FROM articles"); $currentcat = ' in tutte le categorie';}
+                        {$artsset = mysql_query("SELECT * FROM articles WHERE name LIKE '%".$my_query."%'"); $currentcat = ' in tutte le categorie';}
+                    echo '<p class="artcat-detail">Ricerca di "'.$my_query.'" '.$currentcat.'</p>';            
+                    echo '<div id="container"><span class="stretch"></span>';
                     if (mysql_num_rows($artsset)>0) {
                         while ($articles = mysql_fetch_array($artsset)) {
                             show_article_thumb($articles);
