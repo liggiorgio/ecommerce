@@ -2,6 +2,12 @@
     $pagename = "Acquisto";
     include_once("../config.php");
 
+    // Se l'utente ha già effettuato il login, riporta alla pagina iniziale
+    if (!isset($_SESSION['status']) || ($_SESSION['status'] == 0)) {
+        header("Location: /login.php");
+        exit;
+    }
+
     if (isset($_GET['purchase']) && ($_GET['purchase'] == 1)) {
         $_SESSION['success'] = 2;
         $_SESSION['cartno'] = 0;
@@ -18,6 +24,7 @@
     $subtotal = 0;
     $quantity = 0;
     $error = 0;
+    $billdescr = "";
 ?>
         <div id="wrapper">
             <div id="space-up"></div>
@@ -29,14 +36,17 @@
                     $cartset = mysql_query("SELECT * FROM carts WHERE idUser=".$_SESSION['id']);
                     if (mysql_num_rows($cartset)>0) {
                         while ($cart = mysql_fetch_array($cartset)) {
-                            $subtotal += mysql_result(mysql_query("SELECT price FROM articles, carts WHERE articles.id=".$cart['idArticle']),0,'price') or die();
+                            $currart = mysql_query("SELECT name, price FROM articles WHERE articles.id=".$cart['idArticle']) or die("Errore 1");
+                            $currart = mysql_fetch_array($currart);
+                            $subtotal += $currart['price'];
                             $quantity += 1;
+                            $billdescr = $billdescr.'- <a href="/view/article.php?id='.$cart['idArticle'].'"><u>'.substr($currart['name'],0,77).'...</u></a><br>';
                             $res = mysql_query('UPDATE articles SET amount=(amount-1) WHERE id='.$cart['idArticle']);
                         }
                         $query = mysql_query("DELETE FROM carts WHERE idUser=".$_SESSION['id']);
                     }
                     // FATTURA
-                    $query = mysql_query("INSERT INTO bills(idUser,total,descr) VALUES(".$_SESSION['id'].",".$subtotal.",".$quantity.")") or die();
+                    $query = mysql_query("INSERT INTO bills(idUser,total,descr,amount) VALUES(".$_SESSION['id'].",".$subtotal.",'".($billdescr)."',".$quantity.")") or die();
                     
                     if (isset($message) && ($message == 2) && ($error==0))
                         echo '<div id="box-message"><span>Transazione completata</span><p>Grazie per aver completato l\'acquisto dei prodotti!</p></div><span class="stretch"></span>';

@@ -55,7 +55,7 @@
                         <div class="user-info-table">
                             <p class="artcat-detail">Fatture</p>
                             <div class="user-text">
-                                <p>Visualizza <u>qui</u> le tue fatture.</p>
+                                <p>Visualizza <a href="./view/bills.php"><u>qui</u></a> le tue fatture.</p>
                             </div>
                         </div>
                     </div><span class="stretch"></span>';
