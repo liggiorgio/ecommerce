@@ -672,3 +672,11 @@ form span {
     font-weight: bold;
     font-size: 16px;
 }
+
+#admin-section form, #admin-section fieldset {
+    padding: 5px 10px;
+}
+
+#admin-section input {
+    margin: 0 5px;
+}

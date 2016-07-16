@@ -46,7 +46,8 @@
                         $query = mysql_query("DELETE FROM carts WHERE idUser=".$_SESSION['id']);
                     }
                     // FATTURA
-                    $query = mysql_query("INSERT INTO bills(idUser,total,descr,amount) VALUES(".$_SESSION['id'].",".$subtotal.",'".($billdescr)."',".$quantity.")") or die();
+                    $billdescr = trim($billdescr);
+                    $query = mysql_query("INSERT INTO bills(idUser,total,descr,amount) VALUES(".$_SESSION['id'].",".$subtotal.",'".$billdescr."',".$quantity.")") or die();
                     
                     if (isset($message) && ($message == 2) && ($error==0))
                         echo '<div id="box-message"><span>Transazione completata</span><p>Grazie per aver completato l\'acquisto dei prodotti!</p></div><span class="stretch"></span>';

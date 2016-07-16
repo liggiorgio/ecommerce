@@ -16,8 +16,10 @@
                 </li>
                 <li class="navbutton">'.$_SESSION['fullname'].'
                     <ul id="submenu-profile">
-                        <a href="/dashboard.php"><li class="navsubmenu">Dashboard</li></a>
-                        <a href="/logout.php"><li class="navsubmenu">Esci</li></a>
+                        <a href="/dashboard.php"><li class="navsubmenu">Dashboard</li></a>';
+                        if (isset($_SESSION['admin']) && $_SESSION['admin']==1)
+                            echo '<a href="/administration.php"><li class="navsubmenu">Amministra</li></a>';
+                        echo '<a href="/logout.php"><li class="navsubmenu">Esci</li></a>
                     </ul>
                 </li>';
                 }
