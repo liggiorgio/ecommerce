@@ -19,7 +19,7 @@
         exit;
     } else {
         $error = 0;
-        $city = mysql_escape_string(htmlspecialchars(trim($_POST['city'])));
+        $city = mysql_real_escape_string(htmlspecialchars(trim($_POST['city'])));
         $query = "DELETE FROM cities WHERE cities.id = $city";
         $res = mysql_query($query) or ($error = 1);
         

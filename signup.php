@@ -28,12 +28,12 @@
        isset($_POST['city']) && !empty($_POST['city']) &&
        isset($_POST['email']) && !empty($_POST['email']) &&
        isset($_POST['password']) && !empty($_POST['password'])) {
-            $firstname = mysql_escape_string(htmlspecialchars(trim($_POST['firstname'])));
-            $lastname = mysql_escape_string(htmlspecialchars(trim($_POST['lastname'])));
-            $address = mysql_escape_string(htmlspecialchars(trim($_POST['address'])));
-            $city = mysql_escape_string($_POST['city']);
-            $email = mysql_escape_string(htmlspecialchars(trim($_POST['email'])));
-            $password = mysql_escape_string(md5(htmlspecialchars(trim($_POST['password'])).$salt));
+            $firstname = mysql_real_escape_string(htmlspecialchars(trim($_POST['firstname'])));
+            $lastname = mysql_real_escape_string(htmlspecialchars(trim($_POST['lastname'])));
+            $address = mysql_real_escape_string(htmlspecialchars(trim($_POST['address'])));
+            $city = mysql_real_escape_string($_POST['city']);
+            $email = mysql_real_escape_string(htmlspecialchars(trim($_POST['email'])));
+            $password = mysql_real_escape_string(md5(htmlspecialchars(trim($_POST['password'])).$salt));
             $query = "INSERT INTO users(firstname,lastname,email,password,address,city) VALUES('$firstname','$lastname','$email','$password','$address','$city')";
             $res = mysql_query($query) or ($error = 3);
             if ($error == 0) {

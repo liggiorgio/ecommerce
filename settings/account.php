@@ -22,25 +22,26 @@
     if(isset($_POST['email']) && !empty($_POST['email']) &&
        isset($_POST['password1']) && !empty($_POST['password1']) &&
        isset($_POST['password2']) && !empty($_POST['password2'])) {
-            $email = htmlspecialchars(trim($_POST['email']));
-            $password1 = md5(htmlspecialchars(trim($_POST['password1'])).$salt);
-            $password2 = md5(htmlspecialchars(trim($_POST['password2'])).$salt);
-            $query = "UPDATE users SET email='$email',password='$password1' WHERE id=".$_SESSION['id'];
-            $res = mysql_query($query) or ($error = 1);
+            $email = mysql_real_escape_string(htmlspecialchars(trim($_POST['email'])));
+            $password1 = mysql_real_escape_string(md5(htmlspecialchars(trim($_POST['password1'])).$salt));
+            $password2 = mysql_real_escape_string(md5(htmlspecialchars(trim($_POST['password2'])).$salt));
             if ($password1 != $password2) {
                 $error = 3;
-            }
-            if ($error == 0) {
-                $_SESSION['success'] = 1;
-                header("Location: /dashboard.php");
-                exit;
             } else {
-                $error = 3;
+                $query = "UPDATE users SET email='$email',password='$password1' WHERE id=".$_SESSION['id'];
+                $res = mysql_query($query) or ($error = 1);
+                if ($error == 0) {
+                    $_SESSION['success'] = 1;
+                    header("Location: /dashboard.php");
+                    exit;
+                } else {
+                    $error = 3;
+                }
             }
         } elseif ((isset($_POST['email']) && !empty($_POST['email'])) &&
                   (isset($_POST['password1']) && empty($_POST['password1'])) &&
                   (isset($_POST['password2']) && empty($_POST['password2']))) {
-            $email = htmlspecialchars(trim($_POST['email']));
+            $email = mysql_real_escape_string(htmlspecialchars(trim($_POST['email'])));
             $query = "UPDATE users SET email='$email' WHERE id=".$_SESSION['id'];
             $res = mysql_query($query) or ($error = 1);
             if ($error == 0) {

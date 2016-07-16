@@ -26,10 +26,10 @@
        isset($_POST['lastname']) && !empty($_POST['lastname']) &&
        isset($_POST['address']) && !empty($_POST['address']) &&
        isset($_POST['city']) && !empty($_POST['city'])) {
-            $firstname = htmlspecialchars(trim($_POST['firstname']));
-            $lastname = htmlspecialchars(trim($_POST['lastname']));
-            $address = htmlspecialchars(trim($_POST['address']));
-            $city = $_POST['city'];
+            $firstname = mysql_real_escape_string(htmlspecialchars(trim($_POST['firstname'])));
+            $lastname = mysql_real_escape_string(htmlspecialchars(trim($_POST['lastname'])));
+            $address = mysql_real_escape_string(htmlspecialchars(trim($_POST['address'])));
+            $city = mysql_real_escape_string(htmlspecialchars(trim($_POST['city'])));
             $query = "UPDATE users SET firstname='$firstname',lastname='$lastname',address='$address',city='$city' WHERE id=".$_SESSION['id'];
             $res = mysql_query($query) or ($error = 1);
             if ($error == 0) {

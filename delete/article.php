@@ -19,7 +19,7 @@
         exit;
     } else {
         $error = 0;
-        $article = mysql_escape_string(htmlspecialchars(trim($_POST['article'])));
+        $article = mysql_real_escape_string(htmlspecialchars(trim($_POST['article'])));
         $query = "DELETE FROM articles WHERE articles.id = $article";
         $res = mysql_query($query) or ($error = 1);
         

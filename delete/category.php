@@ -1,5 +1,5 @@
 <?php
-    $pagename = "Aggiungi città";
+    $pagename = "Rimuovi categoria";
     include_once("../config.php");
 
     // Se l'utente ha già effettuato il login, riporta alla pagina iniziale
@@ -14,13 +14,13 @@
         exit;
     }
 
-    if (!isset($_POST['city']) || empty($_POST['city'])) {
+    if (!isset($_POST['category']) || empty($_POST['category'])) {
         header("Location: /administration.php");
         exit;
     } else {
         $error = 0;
-        $city = mysql_real_escape_string(htmlspecialchars(trim($_POST['city'])));
-        $query = "INSERT INTO cities(name) VALUES ('$city')";
+        $category = mysql_real_escape_string(htmlspecialchars(trim($_POST['category'])));
+        $query = "DELETE FROM categories WHERE categories.id = $category";
         $res = mysql_query($query) or ($error = 1);
         
         if ($error==0) {
@@ -35,7 +35,7 @@
                 <div id="space-up"></div>
             
                     <!--- Page content --->
-                    <h1>Aggiungi città</h1>
+                    <h1>Rimuovi città</h1>
                     <div id="box-error"><span>Errore durante l\'operazione</span><p>Non è stato possibile
                     portare a termine l\'operazione, riprova più tardi.</p></div>
                     <div id="space-down"></div>

@@ -12,9 +12,6 @@ Features:
  - Article detail page
  - User dashboard
  - User cart
- - Administration CRUD tools (to be completed)
+ - Administration CRUD tools
 
-
-To-do list:
-
- - Administration CRUD tools (full)
+Code and formatting can still be improved A LOT, though this is my very first PHP project, so be patient with me.

@@ -23,8 +23,8 @@
             $error = 2;
     if (isset($_POST['email']) && !empty($_POST['email']) &&
         isset($_POST['password']) && !empty($_POST['password'])) {
-        $email = mysql_escape_string(htmlspecialchars(trim($_POST['email'])));
-        $password = mysql_escape_string(md5(htmlspecialchars(trim($_POST['password'])).$salt));
+        $email = mysql_real_escape_string(htmlspecialchars(trim($_POST['email'])));
+        $password = mysql_real_escape_string(md5(htmlspecialchars(trim($_POST['password'])).$salt));
         
         $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
         $res = mysql_query($query) or die("<br><br><br>Impossibile completare l'operazione");

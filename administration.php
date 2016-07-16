@@ -69,29 +69,52 @@
                             </select>
                             <input type="submit" value="Rimuovi">
                         </fieldset>
-                    </form>
+                    </form><br>
+                
                 <p class="artcat-detail">Gestione categorie</p>
-                    <form>
+                    <form action="/add/category.php">
                         <fieldset>
                             <legend>Aggiungi categoria</legend>
                             <label>Aggiungi categoria: </label>
-                            <a href="/add/category.php"><button>Aggiungi</button></a>
+                            <input type="submit" value="Aggiungi">
                         </fieldset>
                     </form>
                 
-                    <form>
+                    <form action="/edit/category.php" method="get">
                         <fieldset>
                             <legend>Modifica categoria</legend>
+                            <label>Modifica la categoria: </label>
+                            <select name="category">
+                                <option value="">Seleziona una categoria... </option>
+                                <?php
+                                    $catset = mysql_query("SELECT * FROM categories ORDER BY name");
+                                    while ($cats = mysql_fetch_array($catset)) {
+                                        echo "<option value=\"".$cats['id']."\">".substr($cats['name'],0,50)."...</option>";
+                                    }
+                                ?>
+                            </select>
+                            <input type="submit" value="Modifica">
                         </fieldset>
                     </form>
                 
-                    <form>
+                    <form action="/delete/category.php" method="post">
                         <fieldset>
                             <legend>Rimuovi categoria</legend>
+                            <label>Rimuovi la categoria: </label>
+                            <select name="category">
+                                <option value="">Seleziona una categoria... </option>
+                                <?php
+                                    $catset = mysql_query("SELECT * FROM categories ORDER BY name");
+                                    while ($cats = mysql_fetch_array($catset)) {
+                                        echo "<option value=\"".$cats['id']."\">".substr($cats['name'],0,50)."...</option>";
+                                    }
+                                ?>
+                            </select>
+                            <input type="submit" value="Rimuovi">
                         </fieldset>
-                    </form>
-                <p class="artcat-detail">Gestione città</p>
+                    </form><br>
                 
+                <p class="artcat-detail">Gestione città</p>
                     <form action="/add/city.php" method="post">
                         <fieldset>
                             <legend>Aggiungi città</legend>
@@ -135,9 +158,44 @@
                             </select>
                             <input type="submit" value="Rimuovi">
                         </fieldset>
-                    </form>
+                    </form><br>
                 
                 <p class="artcat-detail">Gestione utenti</p>
+                    <form action="/edit/user.php" method="get">
+                        <fieldset>
+                            <legend>Modifica utente</legend>
+                            <label>Modifica l'utente: </label>
+                            <select name="user">
+                                <option value="">Seleziona un utente... </option>
+                                <?php
+                                    $userset = mysql_query("SELECT id,firstname,lastname FROM users ORDER BY firstname");
+                                    while ($users = mysql_fetch_array($userset)) {
+                                        if ($users['id'] != $_SESSION['id'])
+                                            echo "<option value=\"".$users['id']."\">".$users['firstname']." ".$users['lastname']."</option>";
+                                    }
+                                ?>
+                            </select>
+                            <input type="submit" value="Modifica">
+                        </fieldset>
+                    </form>
+                
+                    <form action="/delete/user.php" method="post">
+                        <fieldset>
+                            <legend>Rimuovi utente</legend>
+                            <label>Rimuovi l'utente: </label>
+                            <select name="user">
+                                <option value="">Seleziona un utente... </option>
+                                <?php
+                                    $userset = mysql_query("SELECT id,firstname,lastname FROM users ORDER BY firstname");
+                                    while ($users = mysql_fetch_array($userset)) {
+                                        if ($users['id'] != $_SESSION['id'])
+                                            echo "<option value=\"".$users['id']."\">".$users['firstname']." ".$users['lastname']."</option>";
+                                    }
+                                ?>
+                            </select>
+                            <input type="submit" value="Rimuovi">
+                        </fieldset>
+                    </form>
             </div>
             <div id="space-down"></div>
         </div>

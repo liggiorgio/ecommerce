@@ -22,7 +22,7 @@
         header("Location: /administration.php");
         exit;
     } else {
-        $myId = mysql_escape_string($_GET['article']);
+        $myId = mysql_real_escape_string($_GET['article']);
         $query = mysql_query("SELECT * FROM articles WHERE id = '$myId'");
         $item = mysql_fetch_array($query);
     }
@@ -44,11 +44,11 @@
        isset($_POST['category']) && !empty($_POST['category']) &&
        isset($_POST['amount']) && !empty($_POST['amount'])) {
             $idArt = $_POST['id'];
-            $name = mysql_escape_string(htmlspecialchars(trim($_POST['name'])));
-            $descr = mysql_escape_string(htmlspecialchars(trim($_POST['description'])));
-            $price = mysql_escape_string(htmlspecialchars(trim($_POST['price'])));
-            $cat = mysql_escape_string($_POST['category']);
-            $amount = mysql_escape_string(htmlspecialchars(trim($_POST['amount'])));
+            $name = mysql_real_escape_string(htmlspecialchars(trim($_POST['name'])));
+            $descr = mysql_real_escape_string(htmlspecialchars(trim($_POST['description'])));
+            $price = mysql_real_escape_string(htmlspecialchars(trim($_POST['price'])));
+            $cat = mysql_real_escape_string($_POST['category']);
+            $amount = mysql_real_escape_string(htmlspecialchars(trim($_POST['amount'])));
             $query = "UPDATE articles SET name='$name',descr='$descr',price='$price',cat='$cat',amount='$amount' WHERE id='$idArt'";
             $res = mysql_query($query) or ($error = 3);
             if ($error == 0) {
