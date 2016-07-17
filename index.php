@@ -35,7 +35,14 @@
             <?php
                 echo '<p class="artcat-detail">Ultimi arrivi</p>';
                 echo '<div id="container"><span class="stretch"></span>';
-                $artsset = mysql_query("SELECT * FROM articles ORDER BY cat");
+                $artsset = mysql_query("SELECT * FROM articles ORDER BY id DESC LIMIT 8");
+                while ($articles = mysql_fetch_array($artsset)) {
+                    show_article_thumb($articles);
+                }
+                echo '<span class="stretch"></span>';
+                echo '<p class="artcat-detail">Offerte</p>';
+                echo '<span class="stretch"></span>';
+                $artsset = mysql_query("SELECT * FROM articles ORDER BY price LIMIT 8");
                 while ($articles = mysql_fetch_array($artsset)) {
                     show_article_thumb($articles);
                 }

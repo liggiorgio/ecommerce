@@ -57,7 +57,7 @@
                 $id = mysql_fetch_assoc(mysql_query($query));
                 $target_dir = "../public/res/articles/";
                 if (!file_exists($target_dir)) {
-                    mkdir($target_dir, 0777, true);
+                    mkdir($target_dir, 0755, true);
                 }
                 $target_file = $target_dir.strval($id['id']).".jpg";
                 $uploadOk = 1;

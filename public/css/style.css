@@ -453,6 +453,10 @@ form span {
     margin-bottom: 20px;
 }
 
+.artcat-detail {
+    text-align: left;
+}
+
 .artcat-detail > a {
     text-decoration: underline;
     color: white;
