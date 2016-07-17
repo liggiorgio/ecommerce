@@ -195,6 +195,16 @@
                             </select>
                             <input type="submit" value="Rimuovi">
                         </fieldset>
+                    </form><br>
+                
+                <p class="artcat-detail">Fatture</p>
+                    <form>
+                        <fieldset>
+                            <legend>Tutte le fatture</legend>
+                            <div class="user-text">
+                                <p>Visualizza <a href="./view/allbills.php"><u>qui</u></a> tutte le fatture sulla tua attività commerciale.</p>
+                            </div>
+                        </fieldset>
                     </form>
             </div>
             <div id="space-down"></div>

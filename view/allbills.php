@@ -1,5 +1,5 @@
 <?php
-    $pagename = "Fatture";
+    $pagename = "Tutte le fatture";
     include_once("../config.php");
     include_once("../public/header.php");
     include_once("../public/navbar.php");
@@ -9,16 +9,22 @@
         header("Location: /login.php");
         exit;
     }
+
+    // Se l'utente non è un amministratore, riporta alla pagina iniziale
+    if (!isset($_SESSION['admin']) || ($_SESSION['admin'] == 0)) {
+        header("Location: /index.php");
+        exit;
+    }
 ?>
         <div id="wrapper">
             <div id="space-up"></div>
             
             <!--- Page content --->
-            <h1>Le mie fatture</h1>
+            <h1>Tutte le fatture</h1>
             <p>Clicca su una fattura per visualizzarne i dettagli</p>
             <span class="stretch"></span>
             <?php
-                $billsset = mysql_query("SELECT * FROM bills WHERE idUser=".$_SESSION['id']." ORDER BY date DESC");
+                $billsset = mysql_query("SELECT bills.*, users.firstname, users.lastname from bills, users WHERE users.id = bills.idUser ORDER BY date DESC");
                 if (mysql_num_rows($billsset)>0) {
                     while ($bill = mysql_fetch_array($billsset)) {
                         echo '<div class="bill-detail" onclick="divExpand(this);">';
@@ -28,6 +34,7 @@
                                 else
                                     echo $bill['amount']." articoli)</p>";
                                 echo "<div class='bill-details'><br><hr><br>
+                                    <p class='bill-text'>Nome cliente: <b>".$bill['firstname']." ".$bill['lastname']."</b></p><br>
                                     <p class='bill-text'>Prodotti acquistati in questa transazione:</p><br>
                                     <p class='bill-descr'>".$bill['descr']."</p><br>
                                     <p class='bill-total'>Totale: ".$bill['total']."€</p>
