@@ -16,7 +16,6 @@
                 while ($categories = mysql_fetch_array($catsset)) {
                     echo '<a class="category" href="/view/browsecategory.php?id='.$categories['id'].'" title="Esplora articoli in '.$categories['name'].'">
                     <span class="catname">'.$categories['name'].'</span>
-                    <img src="/public/res/categories/'.$categories['id'].'.jpg">
                     <span class="catdescr">'.$categories['descr'].'</span></a>';
                 }
             ?>

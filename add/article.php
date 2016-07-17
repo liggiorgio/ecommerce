@@ -22,7 +22,8 @@
         (isset($_POST['description']) && empty($_POST['description'])) ||
         (isset($_POST['price']) && empty($_POST['price'])) ||
         (isset($_POST['category']) && empty($_POST['category'])) ||
-        (isset($_POST['amount']) && empty($_POST['amount']))) {
+        (isset($_POST['amount']) && empty($_POST['amount'])) ||
+        (isset($_FILES['fileToUpload']['name']) && empty($_FILES['fileToUpload']['name']))) {
         $error = 2;
     }
 
@@ -31,7 +32,8 @@
        isset($_POST['description']) && !empty($_POST['description']) &&
        isset($_POST['price']) && !empty($_POST['price']) &&
        isset($_POST['category']) && !empty($_POST['category']) &&
-       isset($_POST['amount']) && !empty($_POST['amount'])) {
+       isset($_POST['amount']) && !empty($_POST['amount']) &&
+       isset($_FILES['fileToUpload']['name']) && !empty($_FILES['fileToUpload']['name'])) {
             $name = mysql_real_escape_string(htmlspecialchars(trim($_POST['name'])));
             $descr = mysql_real_escape_string(htmlspecialchars(trim($_POST['description'])));
             $price = mysql_real_escape_string(htmlspecialchars(trim($_POST['price'])));
@@ -39,12 +41,72 @@
             $amount = mysql_real_escape_string(htmlspecialchars(trim($_POST['amount'])));
             $query = "INSERT INTO articles(name,descr,price,cat,amount) VALUES('$name','$descr','$price','$cat','$amount')";
             $res = mysql_query($query) or ($error = 3);
+            /*
+            $target_dir = "/public/res/articles/";
+            $target_file = $target_dir.$id['id'].".jpg";
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            if ($imageFileType != "jpg") {
+                $error = 4;
+            }
+            if (!move_uploaded_file($_FILES["thumb"]["name"], $target_file)) {
+                $error = 4;
+            }*/
+            {
+                // Here we save the thumbnail of the article
+                $query = "SELECT id FROM articles ORDER BY id DESC LIMIT 1";
+                $id = mysql_fetch_assoc(mysql_query($query));
+                $target_dir = "../public/res/articles/";
+                if (!file_exists($target_dir)) {
+                    mkdir($target_dir, 0777, true);
+                }
+                $target_file = $target_dir.strval($id['id']).".jpg";
+                $uploadOk = 1;
+                $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                // Check if image file is a actual image or fake image
+                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                if($check !== false) {
+                    echo "File is an image - " . $check["mime"] . ".";
+                    $uploadOk = 1;
+                } else {
+                    echo "File is not an image.";
+                    $uploadOk = 0;
+                }
+                // Check if file already exists
+                if (file_exists($target_file)) {
+                    echo "Sorry, file already exists.";
+                    $uploadOk = 0;
+                }
+                // Check file size
+                if ($_FILES["fileToUpload"]["size"] > 500000) {
+                    echo "Sorry, your file is too large.";
+                    $uploadOk = 0;
+                }
+                // Allow certain file formats
+                if($imageFileType != "jpg" && $imageFileType != "jpeg") {
+                    echo "Sorry, only JPG files are allowed.";
+                    $uploadOk = 0;
+                }
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                    echo "Sorry, your file was not uploaded.";
+                    $error = 4;
+                // if everything is ok, try to upload file
+                } else {
+                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+                    } else {
+                        echo "Sorry, there was an error uploading your file.";
+                        $error = 4;
+                    }
+                }
+            }
             if ($error == 0) {
                 $_SESSION['success'] = 1;
                 header("Location: /administration.php");
                 exit;
         } else {
-            $error = 3;
+                echo "<br>".$_FILES["fileToUpload"]["tmp_name"];
+            //$error = 3;
         }
     }
 ?>
@@ -62,8 +124,10 @@
                 if ($error==3)   // E-mail già usata
                     echo '<div id="box-error"><span>Errore durante l\'operazione</span><p>Non è stato possibile
                     completare l\'operazione, riprova più tardi.</p></div>';
+                if ($error==4)   // Formato immagine errato
+                    echo '<div id="box-error"><span>Errore durante l\'operazione</span><p>Errore durante il caricamento del file. Il formato è errato o si è verificato un problema con il file.</p></div>';
             ?>
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 <div>
                     <h4>Informazioni articolo</h4>
                     <p><label>Nome:</label><input maxlength="255" type="text" name="name" placeholder="Nome articolo"></p>
@@ -79,6 +143,7 @@
                     ?>
                         </select></p>
                     <p><label>Quantità:</label><input type="number" name="amount" placeholder="Quantità"></p>
+                    <p><label>Immagine (.jpg):</label><input type="file" name="fileToUpload"></p>
                 </div>
                 <span><input type="submit" value="Aggiungi articolo"></span>
             </form>
